@@ -11,7 +11,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-    
 	var num1 = Number(req.body.num1);
 	var num2 = Number(req.body.num2);
 	var op = req.body.op;
@@ -37,6 +36,19 @@ app.post("/", (req, res) => {
 			res.send("Undefined operator");
 			break;
 	}
+});
+
+app.get("/bmiCalculator", (req, res) => {
+	res.sendFile(__dirname + "/bmiCalculator.html");
+});
+
+app.post("/bmiCalculator", (req, res) => {
+	var height = Number(req.body.height);
+	var weight = Number(req.body.weight);
+
+	var bmi = weight / (height * height);
+
+	res.send(`Your BMI is ${bmi}`);
 });
 
 app.listen(port, () => {
